@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+# Memory Card Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to run:
 
-## Available Scripts
+To run, clone the repo and open it in your favorite editor. Cd to the root folder and run "npm install" to to get the required dependencies (React and React-Bootstrap). Once they have installed, run "npm start" to open the app in your browser.
 
-In the project directory, you can run:
+## Description of functionality:
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User visits the game url
+- State for cards and game functionality are set to values in local storage if they exist, and hard-coded values otherwise
+- Once state is loaded, a useEffect shuffles the cards if user has no local storage (this useEffect also runs when user clicks replay)
+- The card array is mapped into JSX 
+- User clicks a card
+- This triggers a function that changes the visibility of the card
+- This triggers a useEffect that handles the calculations relating to whether a user has won the turn or not, and how many turns the user has     left. It checks if two cards are visible, and if so, whether they match. If two are visible and they match, the card status is set to solved.   If they don't match, the cards are set back to unsolved. One turn is subtracted.
+- When a turn is subtracted, this triggers a different useEffect that handles whether the user has won or lost the round. It checks if all         cards are set to solved, and if so, provided the user still has over 0 turns left, the user wins, and game is set to false. If cards are still   unsolved and the turn is equal to 0, the user loses and game is set to false.
+- Each time there is any change to game state, a useEffect runs that pushes all state objects to local storage to ensure the game state is         maintained if the user closed the browser.
