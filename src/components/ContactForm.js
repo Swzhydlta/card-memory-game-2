@@ -6,7 +6,6 @@ function ContactForm() {
   const [email, setEmail] = useState("");
   const [sellerChecked, setSellerChecked] = useState(true);
   const [newsChecked, setNewsChecked] = useState(true);
-  const [formSent, setFormSent] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [mobileSignUp, setMobileSignUp] = useState(0);
   const [desktopSignUp, setDesktopSignUp] = useState(0);
@@ -33,7 +32,7 @@ function ContactForm() {
   return (
     <>
       <Container className="contact-container-desktop mt-3">
-        {desktopSignUp == 0 ? (
+        {desktopSignUp === 0 ? (
           <Row className="form-row-desktop">
             <Col lg={4} md={6} sm={12}>
               <Row>
@@ -96,7 +95,7 @@ function ContactForm() {
               </Row>
             </Col>
           </Row>
-        ) : desktopSignUp == 1 ? (
+        ) : desktopSignUp === 1 ? (
           <Row className="form-row">
             <Col id="form-thank-you">
               <h2>

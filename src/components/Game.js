@@ -195,34 +195,30 @@ function Game() {
     return newArray;
   }
 
-  //   (Pretty bad) function for calculating accuracy, which runs after each round
+  //   Function for calculating accuracy, which runs after each round
   function calculateAccuracy(array) {
     // Sort the cards array
-    const sortedArray = array.sort((a, b) => a.id - b.id);
-    // Assign points for successful matches and failures to match after both cards in a pair have been seen
-    const SUCCESSFUL_MATCH_POINTS = 20;
-    const UNSUCCESSFUL_TURN_POINTS = 5;
+    const arrayCopy = [...array];
+    const sortedArray = arrayCopy.sort((a, b) => a.id - b.id);
 
-    let score = 0;
+    let totalAccuracy = 0;
+    let pairCount = 0;
 
-    // Loop through the array
     for (let i = 0; i < sortedArray.length; i += 2) {
-      // Calculate the amount of times the given pair has been flipped
-      const pairTimesFlipped =
-        sortedArray[i].timesFlipped + sortedArray[i + 1].timesFlipped;
-      // If the pair is solved, add points
-      if (sortedArray[i].solved) {
-        score += SUCCESSFUL_MATCH_POINTS; //10
-        // If it wasn't solved after both cards had been seen once, deduct points for each time that happened
-        if (pairTimesFlipped > 2) {
-          score -= UNSUCCESSFUL_TURN_POINTS * (pairTimesFlipped - 2);
-        }
-        // If it is unsolved, deduct points for each time the pair was flipped excluding the first time
-      } else if (!sortedArray[i].solved) {
-        score -= UNSUCCESSFUL_TURN_POINTS * (pairTimesFlipped - 2);
-      }
+      // Get the average of the times each card in a given pair has been flipped
+      const averageTimesFlipped =
+        (sortedArray[i].timesFlipped + sortedArray[i + 1].timesFlipped) / 2;
+
+      // Get the accuracy for that pair by dividing 1 by averageTimesflipped (results in a score out of 1 with the highest being 1)
+      const pairAccuracy =
+        averageTimesFlipped !== 0 ? 1 / averageTimesFlipped : 0;
+      totalAccuracy += pairAccuracy;
+      pairCount++;
     }
-    setAccuracy(score);
+
+    // Get the overall accuracy by dividing the total accuracy by the amount of pairs
+    const overallAccuracy = Math.round((totalAccuracy / pairCount) * 100);
+    setAccuracy(overallAccuracy);
   }
 
   // Replay function that runs when user clicks replay button. It changes the "game" state variable
@@ -249,8 +245,8 @@ function Game() {
       // If user has no local storage
       if (!storedValue) {
         // Reset all cards and shuffle them
-        const cardArray = cards;
-        const resetCards = cards.map((card) => {
+        const cardArray = [...cards];
+        const resetCards = cardArray.map((card) => {
           return { ...card, solved: false, visible: false, beingSolved: false };
         });
         const shuffledCards = shuffleGivenArray(resetCards);
@@ -262,8 +258,8 @@ function Game() {
         // Else if user has clicked the replay button
       } else if (hasClickedReplay) {
         // Reset all cards and shuffle them
-        const cardArray = cards;
-        const resetCards = cards.map((card) => {
+        const cardArray = [...cards];
+        const resetCards = cardArray.map((card) => {
           return { ...card, solved: false, visible: false, beingSolved: false };
         });
         const shuffledCards = shuffleGivenArray(resetCards);
@@ -314,7 +310,7 @@ function Game() {
   // If they dont match, it sets their "visible" property back to false
   useEffect(() => {
     const cardsArray = cards;
-    if (flippedCards == 2) {
+    if (flippedCards === 2) {
       // Get the two visible cards
       const activeCards = cardsArray.filter(
         (card) => card.beingSolved === true
@@ -422,7 +418,7 @@ function Game() {
                   <div id="outcome-mobile">{wonOrLost ? wonOrLost : ""}</div>
                 </Col>
                 <Col>
-                  <img id="bee-mobile" src={Bee}></img>
+                  <img id="bee-mobile" src={Bee} alt="bee"></img>
                 </Col>
               </Row>
             </Col>
@@ -459,17 +455,23 @@ function Game() {
                     <img
                       className="card-back"
                       src={asset[index].background}
+                      alt="background"
                     ></img>
                   )}
                   {/* front of card */}
                   {card.visible && !card.solved && (
-                    <img className="card-turned" src={card.icon}></img>
+                    <img
+                      className="card-turned"
+                      src={card.icon}
+                      alt="icon"
+                    ></img>
                   )}
                   {/* solved card */}
                   {card.visible && card.solved && (
                     <img
                       className="card-complete"
                       src={asset[index].complete}
+                      alt="solved"
                     ></img>
                   )}
                 </div>
@@ -508,7 +510,7 @@ function Game() {
               <div>Accuracy: {accuracy}</div>
             </Col>
             <Col align="end" className="bee-desktop-col mt-lg-5">
-              <img id="bee-desktop" src={Bee}></img>
+              <img id="bee-desktop" src={Bee} alt="bee"></img>
             </Col>
           </Row>
           <Row className="mt-lg-4">
