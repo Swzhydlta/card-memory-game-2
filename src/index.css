@@ -1,0 +1,353 @@
+.App {
+  background-image: url("./assets/img-bg-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 110vh;
+}
+
+/* Cards */
+
+.card-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20% !important;
+}
+.card-div {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  min-height: 100%;
+  cursor: pointer;
+
+}
+
+/* Contact form */
+
+.contact-container-desktop {
+  display: none;
+}
+
+.bee-informed {
+  font-weight: 800;
+  font-size: 23px;
+}
+
+.form-control {
+  background-color: #EFEEEB !important;
+  border: none !important;
+  transition: none !important;
+  height: 45px !important;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+} 
+
+.form-check-input[type=checkbox] {
+  background-color: #EFEEEB;
+  border-radius: 0%;
+
+  border-radius: 5px !important;
+  height: 20px;
+  width: 20px;
+  border: none;
+}
+
+.form-check-input:checked[type=checkbox] {
+  background-color: #EFEEEB;
+  border-radius: 5px;
+  height: 20px;
+  width: 20px;
+  background-image: url("./assets/icon-tick.svg") !important;
+  border: none;
+  padding: 5px 5px 2px 2px !important; 
+}
+
+#radio-button-row {
+  height: 100%;
+}
+
+.radio-signup-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  /* align-items: center; */
+  min-height: 100%;
+}
+
+#signup-button {
+  background-color: #6CAFB2;
+  border: none;
+}
+
+/* Right col */
+
+#hero-col-desktop {
+  display: none;
+}
+
+#hero-row-mobile {
+  display: none;
+}
+
+#mix-and-match {
+  display: none;
+}
+
+#mix-and-match-mobile {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 20px;
+  line-height: 15px;
+}
+
+.replay {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+}
+
+#legend-desktop {
+  display: none;
+}
+
+#legend-mobile {
+  display: none;
+}
+
+#outcome-col-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+#outcome-mobile {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 20px;
+}
+
+.bee-desktop-col {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+#bee-mobile-col {
+  display: flex;
+  flex-direction: column;
+}
+
+#bee-desktop {
+  display: none;
+}
+
+#bee-mobile {
+  display: none;
+}
+
+#hero-text-large-screen {
+  display: none;
+}
+
+#hero-text-mobile {
+  display: none;
+}
+
+#sub-hero-text {
+  font-size: 28px;
+  line-height: 35px;
+  font-weight: 500;
+}
+
+/* Top row mobile */
+
+#mix-match-replay-row-mobile {
+  height: 60px;
+}
+
+#delivering-soon-row-mobile {
+  display: none;
+}
+
+/* Form */
+
+.form-row-desktop {
+  display: none;
+}
+
+#form-thank-you {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color:#EFEEEB;
+  border-radius: 5px;
+}
+
+
+
+/* Med to large screens only styles */
+
+@media (min-width: 991px) {
+  /* Hero text */
+
+  #hero-col-desktop {
+    display: block;
+  }
+  #hero-text-large-screen {
+    display: block;
+    font-size: 40px;
+    line-height: 35px;
+    font-weight: 500;
+  }
+
+  #mix-and-match-col-desktop {
+    height: 40px;
+  }
+
+  #mix-and-match {
+    display: block;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 25px;
+  }
+
+  #outcome-desktop {
+    display: block;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 25px;
+    color: purple;
+  }
+
+  #legend-desktop {
+    display: block;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 25px;
+  }
+
+  /* Bee */
+
+  #bee-desktop {
+    display: block;
+  }
+
+  /* Form */
+
+  .contact-container-desktop {
+    display: block;
+    border-radius: 15px;
+    padding: 32px 32px 32px 32px !important;
+
+    background-color: white;
+  }
+
+  .form-row-desktop {
+    display: block;
+    height: 100px;
+    margin: 32px 32px 32px 32px !important;
+  }
+
+  #signup-button-container-mobile {
+    display: none;
+  }
+
+  #contact-container-mobile {
+    display: none;
+  }
+}
+
+/* Mobile-only styles */
+
+@media (max-width: 767px) {
+
+  /* Hero text */
+
+  #hero-row-mobile {
+    display: block;
+  }
+
+  #hero-text-mobile {
+    display: block;
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 500;
+  }
+
+  /* Bee */
+
+  #bee-legend-row-mobile {
+    align-items: center;
+    margin-top: 16px;
+  }
+  #bee-mobile {
+    display: block;
+    width: 50px;
+  }
+
+  #legend-mobile {
+    display: block;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 20px;
+  }
+
+  /* Cards */
+  
+  .card-back {
+    width: 70px;
+  }
+
+  .card-turned {
+    width: 70px;
+  }
+
+  .card-complete {
+    width: 70px;
+  }
+
+  #card-row {
+    padding-top: 15px !important;
+  }
+
+  #delivering-soon-row-mobile {
+    display: block;
+  }
+
+  /* Form */
+
+  #contact-container-mobile {
+    background-color: white;
+  }
+
+  #form-close-col {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .form-row-mobile {
+    height: 400px;
+    padding: 16px 16px 16px 16px;
+    margin: 0px !important;
+  }
+
+  #signup-button-container-mobile {
+    display: block;
+  }
+
+}
+
+
+
